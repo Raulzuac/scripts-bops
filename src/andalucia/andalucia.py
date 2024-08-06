@@ -9,13 +9,13 @@ from andalucia.sevilla import fetch_sevilla_data
 
 def fetch_data_andalucia():
     #LLamadas a las funciones de cada provincia
-    # fetch_almeria_data()
-    # fetch_cadiz_data()
-    # fetch_cordoba_data()
-    #fetch_granada_data()
-    #fetch_huelva_data()
-    #fetch_jaen_data()
-    fetch_malaga_data()
+    fetch_almeria_data()
+    fetch_cadiz_data()
+    fetch_cordoba_data()
+    fetch_granada_data()
+    fetch_huelva_data()
+    fetch_jaen_data()
+    # fetch_malaga_data()
     fetch_sevilla_data()
 
     #Buscamos los datos de la propia andalucía en general

@@ -45,13 +45,13 @@ def fetch_granada_data():
         with open(f'src/andalucia/pdfs/granada_{date.replace('/','-')}.pdf', 'rb') as f:
             pdf = f.read()
             cur = con.cursor()
-            cur.execute("INSERT INTO bops (id,file) VALUES (?,?)", (id,pdf))
+            cur.execute("INSERT INTO bops (place,date,id,file) VALUES (?,?,?,?)", ('BOP Granada',datetime.date.today(),id,pdf))
 
         reader = PdfReader(f'src/andalucia/pdfs/granada_{date.replace('/','-')}.pdf')
         counter = 0
         for page in reader.pages:
             counter += 1
-            cur.execute("INSERT INTO pages (id_bop,num_page,content) VALUES (?,?,?)", (id,counter,page.extract_text()))
+            cur.execute("INSERT INTO pages (bopId,num_page,content) VALUES (?,?,?)", (id,counter,page.extract_text()))
             print(f'Guardando página {counter} de granada')
         con.commit()
 

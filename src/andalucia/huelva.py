@@ -56,13 +56,13 @@ def fetch_huelva_data():
         with open(f'src/andalucia/pdfs/huelva_{date}.pdf', 'rb') as f:
             pdf = f.read()
             cur = con.cursor()
-            cur.execute("INSERT INTO bops (id,file) VALUES (?,?)", (id,pdf))
+            cur.execute("INSERT INTO bops (place,date,id,file) VALUES (?,?,?,?)", ('BOP Huelva',datetime.date.today(),id,pdf))
 
         reader = PdfReader(f'src/andalucia/pdfs/huelva_{date}.pdf')
         counter = 0
         for page in reader.pages:
             counter += 1
-            cur.execute("INSERT INTO pages (id_bop,num_page,content) VALUES (?,?,?)", (id,counter,page.extract_text()))
+            cur.execute("INSERT INTO pages (bopId,num_page,content) VALUES (?,?,?)", (id,counter,page.extract_text()))
         
         con.commit()
 
